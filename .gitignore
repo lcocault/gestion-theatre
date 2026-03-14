@@ -1,0 +1,37 @@
+# Fichiers d'environnement sensibles
+.env
+.env.local
+.env.deploy
+.env.*.local
+
+# Mot de passe admin
+config/.admin_password
+
+# Dépendances (si Composer est utilisé plus tard)
+vendor/
+composer.lock
+
+# Cache
+/cache/
+*.cache
+
+# Logs
+*.log
+/logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Fichiers uploadés (ne pas versionner les uploads en prod)
+public/uploads/
+
+# Clés SSH locales
+*.pem
+*.key
+id_rsa
+id_ed25519
