@@ -1,0 +1,216 @@
+/* ============================================================
+   Gestion Théâtre – CSS Administration
+   ============================================================ */
+
+/* ─── Layout admin ───────────────────────────────────────── */
+.admin-body {
+    background: #f0f0f5;
+}
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────── */
+.admin-sidebar {
+    width: 230px;
+    background: #1a1a2e;
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+.admin-brand {
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid #2d2d4e;
+}
+.admin-brand a {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: Georgia, serif;
+    display: block;
+    margin-bottom: .25rem;
+}
+.admin-brand small { font-size: .8rem; color: #888; }
+
+.admin-menu {
+    list-style: none;
+    padding: .5rem 0;
+    flex: 1;
+}
+.admin-menu li a {
+    display: block;
+    padding: .65rem 1.25rem;
+    color: #aaa;
+    font-size: .92rem;
+    transition: background .15s, color .15s;
+}
+.admin-menu li a:hover {
+    background: #2d2d4e;
+    color: #fff;
+    text-decoration: none;
+}
+
+.admin-user {
+    padding: 1rem;
+    border-top: 1px solid #2d2d4e;
+    font-size: .85rem;
+    color: #888;
+}
+.admin-user a { color: #aaa; }
+.admin-user a:hover { color: #fff; }
+
+/* ─── Main admin area ────────────────────────────────────── */
+.admin-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.admin-header {
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+.admin-header h1 {
+    font-size: 1.4rem;
+    color: #333;
+    margin: 0;
+}
+.admin-content {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+/* ─── Admin tables ───────────────────────────────────────── */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+.table th, .table td {
+    padding: .6rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: .9rem;
+}
+.table th {
+    background: #f5f5f5;
+    font-weight: 600;
+    color: #555;
+}
+.table tbody tr:hover { background: #fafafa; }
+.table .actions { display: flex; gap: .4rem; flex-wrap: wrap; }
+.row-annule { opacity: .65; }
+.statut-confirme { background: #f1f8e9; }
+.statut-annule   { background: #fff3f3; opacity: .7; }
+
+/* ─── Admin forms ────────────────────────────────────────── */
+.admin-content form {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    max-width: 800px;
+}
+.admin-content .form-group input,
+.admin-content .form-group select,
+.admin-content .form-group textarea {
+    max-width: 100%;
+}
+.admin-content hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 1.5rem 0;
+}
+
+/* ─── Prix rows ──────────────────────────────────────────── */
+#prix-container { display: flex; flex-direction: column; gap: .5rem; margin-bottom: .75rem; }
+.prix-row {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+.prix-row input[type=text]   { flex: 2; }
+.prix-row input[type=number] { flex: 1; }
+
+/* ─── Representation checkboxes ──────────────────────────── */
+.representation-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: .75rem;
+    border-radius: 4px;
+    background: #fafafa;
+}
+
+/* ─── Actions bar ────────────────────────────────────────── */
+.admin-actions-bar {
+    margin-bottom: 1rem;
+}
+
+/* ─── Dashboard ──────────────────────────────────────────── */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.dash-card {
+    background: #fff;
+    padding: 1.25rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    text-align: center;
+}
+.dash-count {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #6B2D8B;
+    margin: .5rem 0;
+}
+
+/* ─── Login page ─────────────────────────────────────────── */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+.login-box {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.1);
+    width: 360px;
+    max-width: 100%;
+}
+
+/* ─── Rep info block ─────────────────────────────────────── */
+.rep-info {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.25rem;
+    border-left: 3px solid #6B2D8B;
+}
+
+/* ─── Responsive admin ───────────────────────────────────── */
+@media (max-width: 768px) {
+    .admin-layout { flex-direction: column; }
+    .admin-sidebar { width: 100%; height: auto; position: static; }
+    .admin-menu { display: flex; flex-wrap: wrap; }
+    .admin-menu li a { padding: .5rem .75rem; }
+}
