@@ -7,9 +7,8 @@
 # Mot de passe admin
 config/.admin_password
 
-# Dépendances (si Composer est utilisé plus tard)
+# Dépendances Composer (vendor non versionné)
 vendor/
-composer.lock
 
 # Cache
 /cache/

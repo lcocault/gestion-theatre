@@ -82,22 +82,13 @@ GRANT ALL PRIVILEGES ON DATABASE gestion_theatre TO theatre_user;
 
 ## Migrations
 
-Les migrations se trouvent dans `/database/migrations/`. Elles doivent être exécutées **dans l'ordre numérique** :
+Un seul script SQL initialise la base de données (tables, index et compte admin) :
 
 ```bash
-psql -U theatre_user -d gestion_theatre -f database/migrations/001_create_tables.sql
-psql -U theatre_user -d gestion_theatre -f database/migrations/002_add_comments.sql
-psql -U theatre_user -d gestion_theatre -f database/migrations/003_seed_admin.sql
+psql -U theatre_user -d gestion_theatre -f database/migrations/001_initial.sql
 ```
 
-Ou en une seule commande :
-
-```bash
-for f in database/migrations/*.sql; do
-    echo "Applying $f..."
-    psql -U theatre_user -d gestion_theatre -f "$f"
-done
-```
+Les futures évolutions du schéma seront ajoutées dans de nouveaux fichiers numérotés (`002_…`, `003_…`, etc.).
 
 ---
 
@@ -189,6 +180,42 @@ cp .env.example .env.deploy
 # Déploiement en production
 ./scripts/deploy.sh production
 ```
+
+---
+
+## Tests
+
+Les tests unitaires utilisent [PHPUnit](https://phpunit.de/) 11.
+
+### Installation des dépendances de développement
+
+```bash
+composer install
+```
+
+### Lancer les tests
+
+```bash
+./vendor/bin/phpunit
+```
+
+Ou avec affichage détaillé :
+
+```bash
+./vendor/bin/phpunit --testdox
+```
+
+### Structure des tests
+
+```
+tests/
+  bootstrap.php           → Définition des constantes, chargement de l'autoloader
+  Unit/
+    Models/               → Tests des modèles (fromArray, toArray, logique métier)
+    Services/             → Tests des services avec mocks (ReservationService)
+```
+
+Les tests unitaires ne nécessitent **pas** de base de données. Les dépendances externes (repositories, email) sont mocquées via PHPUnit.
 
 ---
 
