@@ -47,10 +47,19 @@ jobs:
             --exclude='*.env' \
             --exclude='.env*' \
             --exclude='config/.admin_password' \
+            --exclude='config/config.php' \
             --exclude='node_modules/' \
             -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
             ./ \
             "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ steps.path.outputs.deploy_path }}"
+
+      - name: Initialisation de la configuration (première installation)
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "[ -f '${{ steps.path.outputs.deploy_path }}/config/config.php' ] || cp '${{ steps.path.outputs.deploy_path }}/config/config.example.php' '${{ steps.path.outputs.deploy_path }}/config/config.php'"
 
       - name: Notification de déploiement
         run: |
