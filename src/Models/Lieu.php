@@ -12,6 +12,7 @@ class Lieu
     public function __construct(
         public readonly ?int $id,
         public string $nom,
+        public ?string $adresse,
         public ?string $planAcces,
     ) {}
 
@@ -20,6 +21,7 @@ class Lieu
         return new self(
             id: isset($data['id']) ? (int) $data['id'] : null,
             nom: $data['nom'],
+            adresse: $data['adresse'] ?? null,
             planAcces: $data['plan_acces'] ?? null,
         );
     }
@@ -29,6 +31,7 @@ class Lieu
         return [
             'id'         => $this->id,
             'nom'        => $this->nom,
+            'adresse'    => $this->adresse,
             'plan_acces' => $this->planAcces,
         ];
     }

@@ -12,6 +12,9 @@
         <div class="card">
             <div class="card-body">
                 <h3>📍 <?= htmlspecialchars($lieu->nom, ENT_QUOTES, 'UTF-8') ?></h3>
+                <?php if (!empty($lieu->adresse)): ?>
+                <p class="lieu-adresse"><?= nl2br(htmlspecialchars($lieu->adresse, ENT_QUOTES, 'UTF-8')) ?></p>
+                <?php endif; ?>
                 <a href="/lieux/<?= (int) $lieu->id ?>" class="btn btn-secondary">Voir les représentations</a>
             </div>
         </div>

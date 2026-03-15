@@ -52,7 +52,7 @@ class LieuAdminController extends AdminBaseController
             return;
         }
 
-        $lieu = new Lieu(null, trim($_POST['nom']), trim($_POST['plan_acces'] ?? '') ?: null);
+        $lieu = new Lieu(null, trim($_POST['nom']), trim($_POST['adresse'] ?? '') ?: null, trim($_POST['plan_acces'] ?? '') ?: null);
         $this->repo->save($lieu);
         $this->redirect('/admin/lieux');
     }
@@ -89,6 +89,7 @@ class LieuAdminController extends AdminBaseController
         }
 
         $lieu->nom       = trim($_POST['nom']);
+        $lieu->adresse   = trim($_POST['adresse'] ?? '') ?: null;
         $lieu->planAcces = trim($_POST['plan_acces'] ?? '') ?: null;
         $this->repo->save($lieu);
         $this->redirect('/admin/lieux');
