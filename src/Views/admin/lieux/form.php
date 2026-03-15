@@ -17,6 +17,14 @@
     </div>
 
     <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <textarea id="adresse" name="adresse" rows="3"><?= htmlspecialchars(
+            $lieu ? ($lieu->adresse ?? '') : ($_POST['adresse'] ?? ''),
+            ENT_QUOTES, 'UTF-8'
+        ) ?></textarea>
+    </div>
+
+    <div class="form-group">
         <label for="plan_acces">Plan d'accès</label>
         <textarea id="plan_acces" name="plan_acces" rows="6"><?= htmlspecialchars(
             $lieu ? ($lieu->planAcces ?? '') : ($_POST['plan_acces'] ?? ''),

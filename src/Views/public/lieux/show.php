@@ -3,6 +3,15 @@
 <article class="lieu-detail">
     <h2>📍 <?= htmlspecialchars($lieu->nom, ENT_QUOTES, 'UTF-8') ?></h2>
 
+    <?php if (!empty($lieu->adresse)): ?>
+    <section class="adresse">
+        <h3>Adresse</h3>
+        <address>
+            <?= nl2br(htmlspecialchars($lieu->adresse, ENT_QUOTES, 'UTF-8')) ?>
+        </address>
+    </section>
+    <?php endif; ?>
+
     <?php if (!empty($lieu->planAcces)): ?>
     <section class="plan-acces">
         <h3>Plan d'accès</h3>

@@ -9,12 +9,13 @@
 <?php else: ?>
 <table class="table">
     <thead>
-        <tr><th>Nom</th><th>Plan d'accès</th><th>Actions</th></tr>
+        <tr><th>Nom</th><th>Adresse</th><th>Plan d'accès</th><th>Actions</th></tr>
     </thead>
     <tbody>
         <?php foreach ($lieux as $lieu): ?>
         <tr>
             <td><?= htmlspecialchars($lieu->nom, ENT_QUOTES, 'UTF-8') ?></td>
+            <td><?= $lieu->adresse ? htmlspecialchars($lieu->adresse, ENT_QUOTES, 'UTF-8') : '—' ?></td>
             <td><?= $lieu->planAcces ? '✓' : '—' ?></td>
             <td class="actions">
                 <a href="/admin/lieux/<?= (int) $lieu->id ?>/edit" class="btn btn-sm btn-secondary">Modifier</a>

@@ -26,21 +26,23 @@ class LieuRepository extends BaseRepository
     {
         if ($lieu->id === null) {
             $stmt = $this->pdo->prepare(
-                'INSERT INTO lieu (nom, plan_acces) VALUES (:nom, :plan_acces) RETURNING id'
+                'INSERT INTO lieu (nom, adresse, plan_acces) VALUES (:nom, :adresse, :plan_acces) RETURNING id'
             );
             $stmt->execute([
                 'nom'        => $lieu->nom,
+                'adresse'    => $lieu->adresse,
                 'plan_acces' => $lieu->planAcces,
             ]);
             $id = (int) $stmt->fetchColumn();
-            return new Lieu($id, $lieu->nom, $lieu->planAcces);
+            return new Lieu($id, $lieu->nom, $lieu->adresse, $lieu->planAcces);
         }
 
         $stmt = $this->pdo->prepare(
-            'UPDATE lieu SET nom = :nom, plan_acces = :plan_acces, updated_at = NOW() WHERE id = :id'
+            'UPDATE lieu SET nom = :nom, adresse = :adresse, plan_acces = :plan_acces, updated_at = NOW() WHERE id = :id'
         );
         $stmt->execute([
             'nom'        => $lieu->nom,
+            'adresse'    => $lieu->adresse,
             'plan_acces' => $lieu->planAcces,
             'id'         => $lieu->id,
         ]);
