@@ -16,7 +16,6 @@ class RepresentationTest extends TestCase
             'piece_id'                => '2',
             'lieu_id'                 => '4',
             'date_debut'              => '2025-06-15 20:00:00',
-            'date_fin'                => '2025-06-15 22:00:00',
             'max_spectateurs'         => '200',
             'date_limite_reservation' => '2025-06-14 23:59:00',
             'gratuit'                 => '0',
@@ -29,7 +28,6 @@ class RepresentationTest extends TestCase
         $this->assertSame(2, $rep->pieceId);
         $this->assertSame(4, $rep->lieuId);
         $this->assertSame('2025-06-15 20:00:00', $rep->dateDebut);
-        $this->assertSame('2025-06-15 22:00:00', $rep->dateFin);
         $this->assertSame(200, $rep->maxSpectateurs);
         $this->assertSame('2025-06-14 23:59:00', $rep->dateLimiteReservation);
         $this->assertFalse($rep->gratuit);
@@ -45,7 +43,6 @@ class RepresentationTest extends TestCase
 
         $this->assertNull($rep->id);
         $this->assertNull($rep->lieuId);
-        $this->assertNull($rep->dateFin);
         $this->assertSame(100, $rep->maxSpectateurs);
         $this->assertNull($rep->dateLimiteReservation);
         $this->assertFalse($rep->gratuit);
@@ -54,7 +51,7 @@ class RepresentationTest extends TestCase
 
     public function testToArrayReturnsCorrectStructure(): void
     {
-        $rep = new Representation(1, 2, 3, '2025-07-01 20:00:00', null, 150, null, true, false);
+        $rep = new Representation(1, 2, 3, '2025-07-01 20:00:00', 150, null, true, false);
 
         $array = $rep->toArray();
 
@@ -62,7 +59,6 @@ class RepresentationTest extends TestCase
         $this->assertSame(2, $array['piece_id']);
         $this->assertSame(3, $array['lieu_id']);
         $this->assertSame('2025-07-01 20:00:00', $array['date_debut']);
-        $this->assertNull($array['date_fin']);
         $this->assertSame(150, $array['max_spectateurs']);
         $this->assertTrue($array['gratuit']);
         $this->assertFalse($array['annulee']);
@@ -70,21 +66,21 @@ class RepresentationTest extends TestCase
 
     public function testIsReservationOpenReturnsFalseWhenAnnulee(): void
     {
-        $rep = new Representation(1, 1, null, date('Y-m-d H:i:s', strtotime('+1 day')), null, 100, null, false, true);
+        $rep = new Representation(1, 1, null, date('Y-m-d H:i:s', strtotime('+1 day')), 100, null, false, true);
 
         $this->assertFalse($rep->isReservationOpen());
     }
 
     public function testIsReservationOpenReturnsTrueForFutureRepresentation(): void
     {
-        $rep = new Representation(1, 1, null, date('Y-m-d H:i:s', strtotime('+10 days')), null, 100, null, false, false);
+        $rep = new Representation(1, 1, null, date('Y-m-d H:i:s', strtotime('+10 days')), 100, null, false, false);
 
         $this->assertTrue($rep->isReservationOpen());
     }
 
     public function testIsReservationOpenReturnsFalseForPastRepresentation(): void
     {
-        $rep = new Representation(1, 1, null, date('Y-m-d H:i:s', strtotime('-1 day')), null, 100, null, false, false);
+        $rep = new Representation(1, 1, null, date('Y-m-d H:i:s', strtotime('-1 day')), 100, null, false, false);
 
         $this->assertFalse($rep->isReservationOpen());
     }
@@ -94,7 +90,7 @@ class RepresentationTest extends TestCase
         $futureDateLimite = date('Y-m-d H:i:s', strtotime('+1 day'));
         $futureDate       = date('Y-m-d H:i:s', strtotime('+5 days'));
 
-        $rep = new Representation(1, 1, null, $futureDate, null, 100, $futureDateLimite, false, false);
+        $rep = new Representation(1, 1, null, $futureDate, 100, $futureDateLimite, false, false);
 
         $this->assertTrue($rep->isReservationOpen());
     }
@@ -104,7 +100,7 @@ class RepresentationTest extends TestCase
         $pastDateLimite = date('Y-m-d H:i:s', strtotime('-1 day'));
         $futureDate     = date('Y-m-d H:i:s', strtotime('+5 days'));
 
-        $rep = new Representation(1, 1, null, $futureDate, null, 100, $pastDateLimite, false, false);
+        $rep = new Representation(1, 1, null, $futureDate, 100, $pastDateLimite, false, false);
 
         $this->assertFalse($rep->isReservationOpen());
     }

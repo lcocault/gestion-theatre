@@ -53,16 +53,6 @@ $action = $representation
                        ENT_QUOTES, 'UTF-8'
                    ) ?>">
         </div>
-        <div class="form-group">
-            <label for="date_fin">Date de fin</label>
-            <input type="datetime-local" id="date_fin" name="date_fin"
-                   value="<?= htmlspecialchars(
-                       $representation && $representation->dateFin
-                           ? date('Y-m-d\TH:i', strtotime($representation->dateFin))
-                           : ($_POST['date_fin'] ?? ''),
-                       ENT_QUOTES, 'UTF-8'
-                   ) ?>">
-        </div>
     </div>
 
     <div class="form-row">

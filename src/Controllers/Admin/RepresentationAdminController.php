@@ -207,7 +207,6 @@ class RepresentationAdminController extends AdminBaseController
             pieceId: (int) $data['piece_id'],
             lieuId: !empty($data['lieu_id']) ? (int) $data['lieu_id'] : null,
             dateDebut: $data['date_debut'],
-            dateFin: !empty($data['date_fin']) ? $data['date_fin'] : null,
             maxSpectateurs: (int) ($data['max_spectateurs'] ?? 100),
             dateLimiteReservation: !empty($data['date_limite_reservation'])
                 ? $data['date_limite_reservation'] : null,
