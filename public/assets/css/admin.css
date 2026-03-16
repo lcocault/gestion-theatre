@@ -109,7 +109,8 @@
     color: #555;
 }
 .table tbody tr:hover { background: #fafafa; }
-.table .actions { display: flex; gap: .4rem; flex-wrap: wrap; }
+.table .actions { display: flex; gap: .4rem; flex-wrap: wrap; align-items: center; }
+.table .actions form { display: contents; }
 .row-annule { opacity: .65; }
 .statut-confirme { background: #f1f8e9; }
 .statut-annule   { background: #fff3f3; opacity: .7; }
