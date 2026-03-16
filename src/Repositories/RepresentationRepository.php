@@ -110,7 +110,6 @@ class RepresentationRepository extends BaseRepository
             'piece_id'                => $rep->pieceId,
             'lieu_id'                 => $rep->lieuId,
             'date_debut'              => $rep->dateDebut,
-            'date_fin'                => $rep->dateFin,
             'max_spectateurs'         => $rep->maxSpectateurs,
             'date_limite_reservation' => $rep->dateLimiteReservation,
             'gratuit'                 => $rep->gratuit ? 'true' : 'false',
@@ -119,22 +118,22 @@ class RepresentationRepository extends BaseRepository
 
         if ($rep->id === null) {
             $stmt = $this->pdo->prepare(
-                'INSERT INTO representation (piece_id, lieu_id, date_debut, date_fin, max_spectateurs,
+                'INSERT INTO representation (piece_id, lieu_id, date_debut, max_spectateurs,
                  date_limite_reservation, gratuit, annulee)
-                 VALUES (:piece_id, :lieu_id, :date_debut, :date_fin, :max_spectateurs,
+                 VALUES (:piece_id, :lieu_id, :date_debut, :max_spectateurs,
                  :date_limite_reservation, :gratuit, :annulee)
                  RETURNING id'
             );
             $stmt->execute($data);
             $id = (int) $stmt->fetchColumn();
             return new Representation($id, $rep->pieceId, $rep->lieuId, $rep->dateDebut,
-                $rep->dateFin, $rep->maxSpectateurs, $rep->dateLimiteReservation, $rep->gratuit, $rep->annulee);
+                $rep->maxSpectateurs, $rep->dateLimiteReservation, $rep->gratuit, $rep->annulee);
         }
 
         $data['id'] = $rep->id;
         $stmt = $this->pdo->prepare(
             'UPDATE representation SET piece_id=:piece_id, lieu_id=:lieu_id, date_debut=:date_debut,
-             date_fin=:date_fin, max_spectateurs=:max_spectateurs,
+             max_spectateurs=:max_spectateurs,
              date_limite_reservation=:date_limite_reservation, gratuit=:gratuit,
              annulee=:annulee, updated_at=NOW() WHERE id=:id'
         );

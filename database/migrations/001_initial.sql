@@ -46,7 +46,6 @@ CREATE TABLE IF NOT EXISTS representation (
     piece_id INTEGER NOT NULL REFERENCES piece(id) ON DELETE CASCADE,
     lieu_id INTEGER REFERENCES lieu(id) ON DELETE SET NULL,
     date_debut TIMESTAMP NOT NULL,
-    date_fin TIMESTAMP,
     max_spectateurs INTEGER NOT NULL DEFAULT 100,
     date_limite_reservation TIMESTAMP,
     gratuit BOOLEAN NOT NULL DEFAULT FALSE,
