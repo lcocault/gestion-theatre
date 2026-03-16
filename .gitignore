@@ -7,6 +7,9 @@
 # Mot de passe admin
 config/.admin_password
 
+# Configuration locale (surcharger config.example.php sur le serveur)
+config/config.php
+
 # Dépendances Composer (vendor non versionné)
 vendor/
 

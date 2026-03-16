@@ -33,7 +33,7 @@ Système de gestion des réservations pour des représentations de théâtre ama
     Services/      → Logique métier (EmailService, ReservationService)
     Views/         → Templates PHP
     Middleware/    → AuthMiddleware, CsrfMiddleware
-/config            → config.php, database.php
+/config            → config.example.php (template), database.php
 /database
     migrations/    → Scripts SQL numérotés
 /scripts           → deploy.sh
@@ -61,14 +61,18 @@ cd gestion-theatre
 
 ### 2. Configuration
 
-Copier le fichier d'exemple et éditer les valeurs :
+Copier les fichiers d'exemple et éditer les valeurs :
 
 ```bash
 cp .env.example .env
 # Éditer .env avec vos paramètres (base de données, email, URL)
+
+cp config/config.example.php config/config.php
+# Adapter config/config.php si nécessaire (les valeurs par défaut lisent les variables d'environnement)
 ```
 
 > ⚠️ Les variables d'environnement sont chargées via `getenv()`. Configurez-les dans votre serveur web ou via votre hébergeur.
+> ⚠️ `config/config.php` est ignoré par git et par le déploiement rsync : vos personnalisations serveur ne seront jamais écrasées.
 
 ### 3. Créer la base de données
 

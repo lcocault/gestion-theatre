@@ -52,9 +52,15 @@ rsync -avz --delete \
     --exclude='.env*' \
     --exclude='.env.deploy' \
     --exclude='config/.admin_password' \
+    --exclude='config/config.php' \
     --exclude='node_modules/' \
     -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=no" \
     "$ROOT_DIR/" \
     "$SSH_USER@$SSH_HOST:$DEPLOY_PATH"
+
+# Initialisation de la configuration si absente (première installation)
+ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no \
+    "$SSH_USER@$SSH_HOST" \
+    "[ -f '$DEPLOY_PATH/config/config.php' ] || cp '$DEPLOY_PATH/config/config.example.php' '$DEPLOY_PATH/config/config.php'"
 
 echo "✅ Déploiement terminé !"
