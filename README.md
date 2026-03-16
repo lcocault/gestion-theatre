@@ -33,7 +33,7 @@ Système de gestion des réservations pour des représentations de théâtre ama
     Services/      → Logique métier (EmailService, ReservationService)
     Views/         → Templates PHP
     Middleware/    → AuthMiddleware, CsrfMiddleware
-/config            → config.example.php (template), database.php
+/config            → config.example.php (template), database.example.php (template)
 /database
     migrations/    → Scripts SQL numérotés
 /scripts           → deploy.sh
