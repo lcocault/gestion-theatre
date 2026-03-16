@@ -48,6 +48,7 @@ jobs:
             --exclude='.env*' \
             --exclude='config/.admin_password' \
             --exclude='config/config.php' \
+            --exclude='config/database.php' \
             --exclude='node_modules/' \
             -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
             ./ \
@@ -59,7 +60,8 @@ jobs:
             -o IdentitiesOnly=yes \
             -o StrictHostKeyChecking=yes \
             "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
-            "[ -f '${{ steps.path.outputs.deploy_path }}/config/config.php' ] || cp '${{ steps.path.outputs.deploy_path }}/config/config.example.php' '${{ steps.path.outputs.deploy_path }}/config/config.php'"
+            "[ -f '${{ steps.path.outputs.deploy_path }}/config/config.php' ] || cp '${{ steps.path.outputs.deploy_path }}/config/config.example.php' '${{ steps.path.outputs.deploy_path }}/config/config.php'; \
+             [ -f '${{ steps.path.outputs.deploy_path }}/config/database.php' ] || cp '${{ steps.path.outputs.deploy_path }}/config/database.example.php' '${{ steps.path.outputs.deploy_path }}/config/database.php'"
 
       - name: Notification de déploiement
         run: |

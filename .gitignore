@@ -10,6 +10,9 @@ config/.admin_password
 # Configuration locale (surcharger config.example.php sur le serveur)
 config/config.php
 
+# Configuration base de données locale (surcharger database.example.php sur le serveur)
+config/database.php
+
 # Dépendances Composer (vendor non versionné)
 vendor/
 
