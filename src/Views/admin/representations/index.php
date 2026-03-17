@@ -42,8 +42,7 @@
                 </a>
                 <?php if (!$rep['annulee']): ?>
                 <form method="POST"
-                      action="/admin/representations/<?= (int) $rep['id'] ?>/annuler"
-                      style="display:inline">
+                      action="/admin/representations/<?= (int) $rep['id'] ?>/annuler">
                     <?= $csrfField ?>
                     <button type="submit"
                             class="btn btn-sm btn-warning btn-icon"
@@ -56,7 +55,6 @@
                 <?php endif; ?>
                 <form method="POST"
                       action="/admin/representations/<?= (int) $rep['id'] ?>/delete"
-                      style="display:inline"
                       onsubmit="return confirm('Supprimer définitivement cette représentation ?')">
                     <?= $csrfField ?>
                     <button type="submit"
