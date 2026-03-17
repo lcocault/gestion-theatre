@@ -39,8 +39,7 @@
             <td class="actions">
                 <?php if ($res['statut'] !== 'confirme'): ?>
                 <form method="POST"
-                      action="/admin/representations/<?= (int) $representation['id'] ?>/reservations/<?= urlencode($res['id']) ?>/confirmer"
-                      style="display:inline">
+                      action="/admin/representations/<?= (int) $representation['id'] ?>/reservations/<?= urlencode($res['id']) ?>/confirmer">
                     <?= $csrfField ?>
                     <button type="submit"
                             class="btn btn-sm btn-success btn-icon"
@@ -53,7 +52,6 @@
                 <?php if ($res['statut'] !== 'annule'): ?>
                 <form method="POST"
                       action="/admin/representations/<?= (int) $representation['id'] ?>/reservations/<?= urlencode($res['id']) ?>/annuler"
-                      style="display:inline"
                       onsubmit="return confirm('Annuler cette réservation ?')">
                     <?= $csrfField ?>
                     <button type="submit"
