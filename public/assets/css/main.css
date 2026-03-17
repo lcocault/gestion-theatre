@@ -275,7 +275,6 @@ a:hover { text-decoration: underline; }
 .form-actions {
     display: flex;
     gap: .75rem;
-    margin-top: 1.5rem;
     flex-wrap: wrap;
 }
 .required { color: var(--color-danger); }
