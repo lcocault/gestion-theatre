@@ -323,7 +323,7 @@ a:hover { text-decoration: underline; }
 
 /* ─── Page header ────────────────────────────────────────── */
 .page-header { margin-bottom: 1.5rem; }
-.actions { margin-top: 1.5rem; }
+.actions { }
 
 /* ─── Piece detail ───────────────────────────────────────── */
 .piece-header {
